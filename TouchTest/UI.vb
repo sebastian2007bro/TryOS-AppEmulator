@@ -8,20 +8,21 @@ Public Class UI
     'The User that is logged in's Folder
     Public UserFolder As String = My.Application.Info.DirectoryPath & "\Users\"
 
-    Public Sub RunCommands(Command As String, Optional TheForm As Object = Nothing)
+    Public Function RunCommands(Command As String, Optional TheForm As Object = Nothing)
         If Command.Contains("exit") = True Then
             Try
                 TheForm.Close()
             Catch ex As Exception
 
             End Try
+            Return Nothing
         ElseIf Command.Contains("end") = True Then
             Try
                 End
             Catch ex As Exception
                 System.Threading.Thread.Sleep(1000)
             End Try
-
+            Return Nothing
         ElseIf Command.Contains("windowmode=mini") = True Then
             Try
                 TheForm.WindowState = FormWindowState.Minimized
@@ -29,41 +30,56 @@ Public Class UI
             Catch ex As Exception
 
             End Try
+            Return Nothing
         ElseIf Command.Contains("run ") = True Then
             Dim Text1 As String = Command
             Text1 = Text1.Replace("Console>", "")
             Text1 = Text1.Replace("run ", "")
             RunShellPrograms(Text1)
+            Return Nothing
         ElseIf Command.Contains("start ") = True Then
             Dim Text1 As String = Command
             Text1 = Text1.Replace("Console>", "")
             Text1 = Text1.Replace("start ", "")
             OpenFormByName("TouchTest." & Text1)
+            Return Nothing
         ElseIf Command.Contains("Loadjpg ") = True Then
             Dim Text1 As String = Command
             Text1 = Text1.Replace("Console>", "")
             Text1 = Text1.Replace("Loadjpg ", "")
             UploadWallpaperToShell(Convert.ToInt64(Text1), "jpg")
+            Return Nothing
         ElseIf Command.Contains("Loadpng ") = True Then
             Dim Text1 As String = Command
             Text1 = Text1.Replace("Console>", "")
             Text1 = Text1.Replace("Loadpng ", "")
             UploadWallpaperToShell(Convert.ToInt64(Text1), "png")
+            Return Nothing
         ElseIf Command.Contains("Loadgif ") = True Then
             Dim Text1 As String = Command
             Text1 = Text1.Replace("Console>", "")
             Text1 = Text1.Replace("Loadgif ", "")
             UploadWallpaperToShell(Convert.ToInt64(Text1), "gif")
+            Return Nothing
         ElseIf Command.Contains("RunUserControl ") = True Then
             Dim Text1 As String = Command
             Text1 = Text1.Replace("Console>", "")
             Text1 = Text1.Replace("RunUserControl ", "")
             RunUserControl(Text1)
+            Return Nothing
         ElseIf Command.Contains("RunTestSniper") = True Then
             Dim gg As New Sniper
             gg.ShowDialog()
+            Return Nothing
+        Else
+            Return Nothing
         End If
+    End Function
+
+    Public Sub EnableFullAppMode(IsAppFull As Boolean)
+        AppEmulator.FormItself.EnableFullAppMode(IsAppFull)
     End Sub
+
     Public Sub StartCMD(Optional GG As String = "New")
         Commander.Show()
         Commander.WindowState = FormWindowState.Normal
@@ -244,6 +260,57 @@ Public Class UI
             MsgBox("Form '" & formName & "' not found or is not a valid Form.")
             Return Nothing
         End If
+    End Function
+
+    Public Function GetFormFromAppDll(DllPath As String) As Object
+        Try
+            Dim asm As Assembly = Assembly.LoadFrom(DllPath)
+
+            ' Find all types that implement OpenFramework_Interface
+            For Each t In asm.GetTypes()
+                If GetType(OpenFramework_Interface).IsAssignableFrom(t) AndAlso Not t.IsInterface AndAlso Not t.IsAbstract Then
+                    Try
+                        Dim plugin As OpenFramework_Interface = CType(Activator.CreateInstance(t), OpenFramework_Interface)
+                        plugin.Initialize(OpenFramework_Data.OpenFramework.host)
+                        Return plugin.GetForm()
+                    Catch ex As Exception
+                        ShowError(ex.Message)
+                        Debug.WriteLine(ex.Message)
+
+                    End Try
+                End If
+            Next
+            Return Nothing
+        Catch Exceptionthing As Exception
+            ShowError(Exceptionthing.Message)
+            Debug.WriteLine(Exceptionthing.Message)
+            Return Nothing
+        End Try
+    End Function
+
+    Public Function GetFormFromAppDll1(DllPath As String) As Object
+        Try
+            Dim asm As Assembly = Assembly.LoadFrom(DllPath)
+
+            ' Find all types that implement OpenFramework_Interface
+            For Each t In asm.GetTypes()
+                If GetType(OpenFramework_Interface).IsAssignableFrom(t) AndAlso Not t.IsInterface AndAlso Not t.IsAbstract Then
+                    Try
+                        Dim plugin As OpenFramework_Interface = CType(Activator.CreateInstance(t), OpenFramework_Interface)
+                        Return plugin.GetForm()
+                    Catch ex As Exception
+                        ShowError(ex.Message)
+                        Debug.WriteLine(ex.Message)
+
+                    End Try
+                End If
+            Next
+            Return Nothing
+        Catch Exceptionthing As Exception
+            ShowError(Exceptionthing.Message)
+            Debug.WriteLine(Exceptionthing.Message)
+            Return Nothing
+        End Try
     End Function
 
     Public Sub ChangeObjectPropertyByName(container As Object, objectName As String, propertyName As String, value As Object)
