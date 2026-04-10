@@ -7,11 +7,17 @@
         Public Shared host As New OpenFramework_Handler()
 
         Public Shared Sub Run()
-            Dim args As String() = Environment.GetCommandLineArgs
+            Dim args As New List(Of String)
+
+            args = Environment.GetCommandLineArgs.ToList
+
+            If args.Count = 1 Then
+                UI.RunCommands("end")
+            End If
 
             Dim AppPath As String = args(1)
 
-            Dim ArgPlace As Int64 = -1
+            Dim ArgPlace As Int64 = 0
 
             Dim AllTryOSArgs As String = Nothing
             For Each s As String In args
@@ -23,6 +29,8 @@
                     AllTryOSArgs = AllTryOSArgs & " " & s
                 End If
             Next
+
+
 
             AppEmulator.FormItself.OpenChildForm(UI.GetFormFromAppDll(AppPath), AllTryOSArgs)
             'args(1)
