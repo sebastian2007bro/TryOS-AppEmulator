@@ -55,7 +55,7 @@
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>TryOS_png.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\PixelKit_Shape-193-copy_37747.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.2739.15, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
@@ -457,6 +457,8 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\PixelKit_Shape-193-copy_37747.ico" />
+    <None Include="Resources\PixelKit_Shape-193-copy_37747.png" />
     <Content Include="TryOS_png.ico" />
   </ItemGroup>
   <ItemGroup>

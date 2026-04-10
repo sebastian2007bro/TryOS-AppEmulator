@@ -8,11 +8,11 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("TryOS Core")>
+<Assembly: AssemblyTitle("TryOS AppEmulator")>
 <Assembly: AssemblyDescription("")>
 <Assembly: AssemblyCompany("SBFC Group")>
-<Assembly: AssemblyProduct("TryOS Core")>
-<Assembly: AssemblyCopyright("Copyright © SBFC Group 2025")>
+<Assembly: AssemblyProduct("TryOS AppEmulator")>
+<Assembly: AssemblyCopyright("Copyright © SBFC Group 2026")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
@@ -28,5 +28,5 @@ Imports System.Runtime.InteropServices
 '      Revision
 '
 
-<Assembly: AssemblyVersion("0.1.1.269")>
-<Assembly: AssemblyFileVersion("0.1.1.269")>
+<Assembly: AssemblyVersion("1.0.0.0")>
+<Assembly: AssemblyFileVersion("1.0.0.0")>

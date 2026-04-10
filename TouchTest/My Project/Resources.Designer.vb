@@ -245,6 +245,26 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         '''</summary>
+        Friend ReadOnly Property PixelKit_Shape_193_copy_37747() As System.Drawing.Icon
+            Get
+                Dim obj As Object = ResourceManager.GetObject("PixelKit_Shape_193_copy_37747", resourceCulture)
+                Return CType(obj,System.Drawing.Icon)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property PixelKit_Shape_193_copy_377471() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("PixelKit_Shape_193_copy_377471", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        '''</summary>
         Friend ReadOnly Property profile_picture_user_icon_153847() As System.Drawing.Icon
             Get
                 Dim obj As Object = ResourceManager.GetObject("profile_picture_user_icon_153847", resourceCulture)
