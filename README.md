@@ -1,2 +1,2 @@
 # TryOS-Core
-This repository contains the core code of TryOS
+This repository contains the code for TryOS AppEmulator
