@@ -28,7 +28,8 @@
     End Sub
 
     Public Function GetVersion() As String
-        Return My.Application.Info.Version.ToString
+        Return "1.1.0.405"
+        'Return My.Application.Info.Version.ToString
     End Function
 
     Public Function GetOSVersion(Optional GetVersionNumber As Boolean = False) As String

@@ -59,11 +59,18 @@
                 Return
             End If
 
+
+
             AppEmulator.FormItself.IsFullScreen = True
 
             AppEmulator.FormItself.PastWindowState = AppEmulator.FormItself.WindowState
             AppEmulator.FormItself.PastSize = AppEmulator.FormItself.Size
             AppEmulator.FormItself.PastPoint = AppEmulator.FormItself.Location
+
+            If AppEmulator.FormItself.WindowState = FormWindowState.Maximized Then
+                AppEmulator.FormItself.Location = New Point(1, 1)
+                AppEmulator.FormItself.WindowState = FormWindowState.Normal
+            End If
 
             AppEmulator.FormItself.FormBorderStyle = FormBorderStyle.None
 

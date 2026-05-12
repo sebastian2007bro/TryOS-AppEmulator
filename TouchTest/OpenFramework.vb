@@ -30,10 +30,21 @@
                 End If
             Next
 
-
-
             AppEmulator.FormItself.OpenChildForm(UI.GetFormFromAppDll(AppPath), AllTryOSArgs)
+
+            AddHandler AppEmulator.FormItself.currentForm.FormClosed, AddressOf AppEmulator_FormClosing
             'args(1)
+        End Sub
+
+        Private Shared Sub AppEmulator_FormClosing(sender As Object, e As FormClosedEventArgs)
+            Try
+                UI.RunCommands("end")
+            Catch ex As Exception
+                Try
+                    TryController.Close()
+                Catch ex1 As Exception
+                End Try
+            End Try
         End Sub
     End Class
 End Namespace

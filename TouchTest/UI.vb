@@ -71,6 +71,13 @@ Public Class UI
             Dim gg As New Sniper
             gg.ShowDialog()
             Return Nothing
+        ElseIf Command.Contains("IsRunningInEmulator") = True Then
+            Return True
+        ElseIf Command.Contains("GetAppEmulatorForm") = True Then
+            Return AppEmulator.FormItself
+        ElseIf Command.Contains("ReturnEmulatorVersion") = True Then
+            Return My.Application.Info.Version
+
         Else
             Return Nothing
         End If

@@ -29,7 +29,7 @@
     End Sub
 
     Public Function GetProgramVersion() As String Implements OpenFramework_UI_Handler.GetProgramVersion
-        Return TryController.GetVersion
+        Return TryController.GetVersion()
     End Function
 
     Public Function GetOpenFrameworkVersion() As String Implements OpenFramework_UI_Handler.GetOpenFrameworkVersion
